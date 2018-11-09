@@ -1,0 +1,33 @@
+- name: Install and Configure Dockerized lamp stack with a simple test application
+  hosts: all
+  become: true
+  become_method: sudo
+  vars:
+      repository_url: https://bitbucket.org/azneita/devops-challenge.git
+      repository_path: /webapps/devops
+      project_name: devops-code-challenge
+  tasks:
+      - name: Install packages
+        apt: 
+          update_cache: yes 
+          name: "{{ packages }}" 
+          state: present
+        vars:
+          packages:
+          - git
+          - python-pip
+          - curl
+      - name: install docker
+        shell: curl -sSL https://get.docker.com/ | sh
+        args:
+          creates: /usr/bin/docker
+      # required to install docker-py
+      - name: install pip
+        shell: curl https://bootstrap.pypa.io/get-pip.py | python
+        args:
+           creates: /usr/local/bin/pip
+      # required by ansible docker module
+      #- name: install docker-py
+      #  pip: name=docker-py version=1.1.0
+      - name: Start docker daemon
+        service: name=docker state=started enabled=yes
