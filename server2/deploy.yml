@@ -21,13 +21,9 @@
         shell: curl -sSL https://get.docker.com/ | sh
         args:
           creates: /usr/bin/docker
-      # required to install docker-py
-      - name: install pip
-        shell: curl https://bootstrap.pypa.io/get-pip.py | python
-        args:
-           creates: /usr/local/bin/pip
-      # required by ansible docker module
-      #- name: install docker
-      #  pip: name=docker
+      - name: install docker-py module
+        pip: name=docker
+      - name: install docker-compose module
+        pip: name=docker-compose
       - name: Start docker daemon
         service: name=docker state=started enabled=yes

@@ -8,6 +8,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "server1" do |server1|
     server1.vm.box = "ubuntu/trusty64"
     server1.vm.hostname = 'server1'
+    #server1.vm.synced_folder "server1/", "/srv"
     # Assigning IP:
     server1.vm.network "private_network", ip: "10.10.10.20"
     #------ Using Virtualbox provider for the exercise
@@ -20,7 +21,7 @@ Vagrant.configure("2") do |config|
     #------ Provisioning through Ansible as per guidelines in exercise
     server1.vm.provision "ansible_local" do |ansible|
       ansible.install = true
-      ansible.playbook = "provisioning/server1_deploy.yml"
+      ansible.playbook = "server1/deploy.yml"
       ansible.verbose = 'v'
     end
   end
@@ -30,6 +31,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "server2" do |server2|
     server2.vm.box = "ubuntu/trusty64"
     server2.vm.hostname = 'server2'
+    server2.vm.synced_folder "server2/", "/srv"
     # Assigning IP:
     server2.vm.network "private_network", ip: "10.10.10.30"
     #------ Using Virtualbox provider for the exercise
@@ -42,7 +44,7 @@ Vagrant.configure("2") do |config|
     #------ Provisioning through Ansible as per guidelines in exercise
     server2.vm.provision "ansible_local" do |ansible|
       ansible.install = true
-      ansible.playbook = "provisioning/server2_deploy.yml"
+      ansible.playbook = "server2/deploy.yml"
       ansible.verbose = 'v'
     end
   end  
