@@ -7,6 +7,11 @@
       repository_path: /webapps/devops
       project_name: devops-code-challenge
   tasks:
+      - name: 
+        lineinfile:
+          path: /etc/resolv.conf
+          line: 'nameserver 8.8.8.8'
+          state: present
       - name: Install packages
         apt: 
           update_cache: yes 
@@ -27,3 +32,7 @@
         pip: name=docker-compose
       - name: Start docker daemon
         service: name=docker state=started enabled=yes
+      - docker_service:
+           project_src: /vagrant/server1
+           state: present
+
