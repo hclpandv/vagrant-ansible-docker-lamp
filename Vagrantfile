@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
       vb.gui = false
       vb.customize ["modifyvm", :id, "--name", "server1"]  
       # Customize the amount of memory on the VM:
-      vb.memory = "512"      
+      vb.memory = "1024"      
     end
     #------ Provisioning through Ansible as per guidelines in exercise
     server1.vm.provision "ansible_local" do |ansible|

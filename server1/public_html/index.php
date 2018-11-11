@@ -1,7 +1,7 @@
 <?php 
 $db_username="sqluser";
 $db_password="123456";
-$db_host='db';
+$db_host='mysql';
 $db_name='greetingsdb';
 
 $conn = mysqli_connect($db_host,$db_username,$db_password);
