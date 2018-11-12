@@ -29,6 +29,17 @@
         pip: name=docker-compose
       - name: Start docker daemon
         service: name=docker state=started enabled=yes
+      - name: pull php docker image
+        docker_image:
+           name: php:7.1-fpm-alpine
+           state: present
+      - name: pull mysql image
+        docker_image:
+           name: mysql/mysql-server:5.7
+           state: present
+      - name: pull apache image
+        docker_image:
+           name: httpd:2.4-alpine
       - name: create lamp stack containers using the docker_compose.yml file present in the ./server1 directory
         docker_service:
            project_src: /vagrant/server1
