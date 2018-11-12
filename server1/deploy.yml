@@ -19,6 +19,7 @@
           - python-pip
           - curl
           - redis-tools
+          - fail2ban
       - name: install docker
         shell: curl -sSL https://get.docker.com/ | sh
         args:
@@ -44,4 +45,12 @@
         docker_service:
            project_src: /vagrant/server1
            state: present
+      - name: override the basic fail2ban configuration with jail.local file
+        copy:
+           src: ./fail2ban/templates/jail.local.j2
+           dest: /etc/fail2ban/jail.local
+           group: root
+           owner: root
+           mode: 0644
+
 

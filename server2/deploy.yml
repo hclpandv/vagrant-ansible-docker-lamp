@@ -8,6 +8,19 @@
           path: /etc/resolv.conf
           line: 'nameserver 8.8.8.8'
           state: present
+      - name: iptables setting for only allowing ssh connection from server1
+        iptables:
+          chain: INPUT
+          source: 10.10.10.20
+          protocol: tcp
+          destination_port: 22
+          jump: ACCEPT
+      #- name: iptables setting to DROP other ip's connecting to server2
+      #  iptables:
+      #    chain: INPUT
+      #    protocol: tcp
+      #    destination_port: 22
+      #    jump: DROP
       - name: Install packages
         apt: 
           update_cache: yes 
@@ -18,6 +31,7 @@
           - git
           - python-pip
           - curl
+          - fail2ban
       - name: install docker
         shell: curl -sSL https://get.docker.com/ | sh
         args:
@@ -35,4 +49,10 @@
           ports:
             - "6379:6379"
           state: started
-      
+      - name: override the basic fail2ban configuration with jail.local file
+        copy:
+          src: ./fail2ban/templates/jail.local.j2
+          dest: /etc/fail2ban/jail.local
+          group: root
+          owner: root
+          mode: 0644
