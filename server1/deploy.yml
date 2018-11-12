@@ -35,7 +35,7 @@
            state: present
       - name: pull mysql image
         docker_image:
-           name: mysql/mysql-server:5.7
+           name: mysql:5.7
            state: present
       - name: pull apache image
         docker_image:
