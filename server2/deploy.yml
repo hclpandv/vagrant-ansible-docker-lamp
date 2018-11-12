@@ -1,12 +1,13 @@
-- name: Install and Configure Dockerized lamp stack with a simple test application
+- name: Install and Configure Dockerized Redis Server
   hosts: all
   become: true
   become_method: sudo
-  vars:
-      repository_url: https://bitbucket.org/azneita/devops-challenge.git
-      repository_path: /webapps/devops
-      project_name: devops-code-challenge
   tasks:
+      - name: update nameserver to support various installations online
+        lineinfile:
+          path: /etc/resolv.conf
+          line: 'nameserver 8.8.8.8'
+          state: present
       - name: Install packages
         apt: 
           update_cache: yes 
@@ -27,3 +28,11 @@
         pip: name=docker-compose
       - name: Start docker daemon
         service: name=docker state=started enabled=yes
+      - name: Create a Redis docker container
+        docker_container:
+          name: redis
+          image: redis:alpine
+          ports:
+            - "6379:6379"
+          state: started
+      

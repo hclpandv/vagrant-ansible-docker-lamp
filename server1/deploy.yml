@@ -2,12 +2,8 @@
   hosts: all
   become: true
   become_method: sudo
-  vars:
-      repository_url: https://bitbucket.org/azneita/devops-challenge.git
-      repository_path: /webapps/devops
-      project_name: devops-code-challenge
   tasks:
-      - name: 
+      - name: update nameserver to avoid issues during various online installations
         lineinfile:
           path: /etc/resolv.conf
           line: 'nameserver 8.8.8.8'
@@ -22,6 +18,7 @@
           - git
           - python-pip
           - curl
+          - redis-tools
       - name: install docker
         shell: curl -sSL https://get.docker.com/ | sh
         args:
@@ -32,7 +29,8 @@
         pip: name=docker-compose
       - name: Start docker daemon
         service: name=docker state=started enabled=yes
-      - docker_service:
+      - name: create lamp stack containers using the docker_compose.yml file present in the ./server1 directory
+        docker_service:
            project_src: /vagrant/server1
            state: present
 
