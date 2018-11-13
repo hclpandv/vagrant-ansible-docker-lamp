@@ -45,7 +45,8 @@ vagrant up
       
 * A `test.php` page added showing a php session counter. can be browsed at http://10.10.10.20/test.php
         
-![php_session_count_output](https://user-images.githubusercontent.com/13016162/48359575-424aa700-e6c3-11e8-9f20-c8443aae7564.JPG)
+![php_session_count_output](https://user-images.githubusercontent.com/13016162/48359575-424aa700-e6c3-11e8-9f20-c8443aae7564.JPG)  
+
 * The sessions are stored in redis. refer the below output 
 	  
 ![redis_server_output](https://user-images.githubusercontent.com/13016162/48359591-4b3b7880-e6c3-11e8-9dde-23cfb7d27475.jpg)
