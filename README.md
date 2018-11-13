@@ -54,8 +54,8 @@ vagrant up
 	    
 ![server2_traffic22_iptables_output](https://user-images.githubusercontent.com/13016162/48359597-4c6ca580-e6c3-11e8-9520-6f8a2c055259.jpg)
 
-![server2_traffic22_dropped_output](https://user-images.githubusercontent.com/13016162/48359595-4c6ca580-e6c3-11e8-85f5-ac09a1bc2fb2.jpg)
-
+![server2_traffic22_dropped_output](https://user-images.githubusercontent.com/13016162/48359595-4c6ca580-e6c3-11e8-85f5-ac09a1bc2fb2.jpg)  
+  
 * A basic fail2ban configuration added to both of these servers to block an IP after 3 failed SSH login attempts
 
 # Improvement oportunities
