@@ -36,9 +36,9 @@ vagrant up
 ![server1_dockers_running_output](https://user-images.githubusercontent.com/13016162/48359593-4bd40f00-e6c3-11e8-96d0-daf42fa58588.jpg)
 * The ansible playbook use `docker_service` module to utilize `docker_compose.yml` to get the containers up and running.
 * A simple php web application is used to query a greetings string `Hellow World` from `mysql` db container and shows as output. 
-* Below screen shot shows the php application and apache server in action :
+* Below screen shot shows the php application and apache server in action :  
 ![server1_apache_output](https://user-images.githubusercontent.com/13016162/48359592-4bd40f00-e6c3-11e8-8caf-0fd996c282bf.jpg)
-    
+  
 * The server2 playbook Installs `docker` and few more dependency packages to create a docker conatainer of redis server.
 * Below screenshot shows the result of playbook as redis container on server2:  
 ![server2_dockers_running_output](https://user-images.githubusercontent.com/13016162/48359594-4bd40f00-e6c3-11e8-984e-b10305234301.jpg)
