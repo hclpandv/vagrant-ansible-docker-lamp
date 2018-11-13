@@ -58,4 +58,6 @@ vagrant up
 
 * A basic fail2ban configuration added to both of these servers to block an IP after 3 failed SSH login attempts
 
+# Improvement oportunities
 
+* Ansible roles can be used if we have well tested and re-usable ansible roles as per the Environment.
